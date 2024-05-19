@@ -1,10 +1,7 @@
 ﻿using ProyectoTest.Models;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace ProyectoTest.Logica
 {
@@ -44,8 +41,10 @@ namespace ProyectoTest.Logica
 
                     oConexion.Open();
 
-                    using (SqlDataReader dr = cmd.ExecuteReader()) {
-                        while (dr.Read()) {
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
                             objeto = new Usuario()
                             {
                                 IdUsuario = Convert.ToInt32(dr["IdUsuario"].ToString()),

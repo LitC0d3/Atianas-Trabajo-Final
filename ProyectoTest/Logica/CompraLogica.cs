@@ -1,11 +1,8 @@
 ﻿using ProyectoTest.Models;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Web;
 
 namespace ProyectoTest.Logica
 {
@@ -40,8 +37,9 @@ namespace ProyectoTest.Logica
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    foreach (DetalleCompra dc in oCompra.oDetalleCompra) {
-                        query.AppendLine("insert into detalle_compra(IdCompra,IdProducto,Cantidad,Total) values (¡idcompra!," + dc.IdProducto +","+dc.Cantidad+","+dc.Total+")");
+                    foreach (DetalleCompra dc in oCompra.oDetalleCompra)
+                    {
+                        query.AppendLine("insert into detalle_compra(IdCompra,IdProducto,Cantidad,Total) values (¡idcompra!," + dc.IdProducto + "," + dc.Cantidad + "," + dc.Total + ")");
                     }
 
                     SqlCommand cmd = new SqlCommand("sp_registrarCompra", oConexion);

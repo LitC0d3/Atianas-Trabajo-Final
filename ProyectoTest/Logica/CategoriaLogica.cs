@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace ProyectoTest.Logica
 {
@@ -13,13 +11,15 @@ namespace ProyectoTest.Logica
 
         private static CategoriaLogica _instancia = null;
 
-        public CategoriaLogica() {
+        public CategoriaLogica()
+        {
 
         }
 
         public static CategoriaLogica Instancia
         {
-            get {
+            get
+            {
                 if (_instancia == null)
                 {
                     _instancia = new CategoriaLogica();
@@ -29,7 +29,8 @@ namespace ProyectoTest.Logica
             }
         }
 
-        public List<Categoria> Listar() {
+        public List<Categoria> Listar()
+        {
 
             List<Categoria> rptListaCategoria = new List<Categoria>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))

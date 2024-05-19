@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
-using System.Linq;
-using System.Web;
 
 namespace ProyectoTest.Logica
 {
@@ -52,7 +50,7 @@ namespace ProyectoTest.Logica
                             IdProducto = Convert.ToInt32(dr["IdProducto"].ToString()),
                             Nombre = dr["Nombre"].ToString(),
                             Descripcion = dr["Descripcion"].ToString(),
-                            oMarca = new Marca() { IdMarca = Convert.ToInt32(dr["IdMarca"].ToString()),Descripcion = dr["DescripcionMarca"].ToString() },
+                            oMarca = new Marca() { IdMarca = Convert.ToInt32(dr["IdMarca"].ToString()), Descripcion = dr["DescripcionMarca"].ToString() },
                             oCategoria = new Categoria() { IdCategoria = Convert.ToInt32(dr["IdCategoria"].ToString()), Descripcion = dr["DescripcionCategoria"].ToString() },
                             Precio = Convert.ToDecimal(dr["Precio"].ToString(), new CultureInfo("es-PE")),
                             Stock = Convert.ToInt32(dr["Stock"].ToString()),
@@ -83,13 +81,13 @@ namespace ProyectoTest.Logica
                 try
                 {
                     SqlCommand cmd = new SqlCommand("sp_registrarProducto", oConexion);
-                    cmd.Parameters.AddWithValue("Nombre", oProducto.Nombre );
-                    cmd.Parameters.AddWithValue("Descripcion", oProducto.Descripcion );
-                    cmd.Parameters.AddWithValue("IdMarca", oProducto.oMarca.IdMarca );
+                    cmd.Parameters.AddWithValue("Nombre", oProducto.Nombre);
+                    cmd.Parameters.AddWithValue("Descripcion", oProducto.Descripcion);
+                    cmd.Parameters.AddWithValue("IdMarca", oProducto.oMarca.IdMarca);
                     cmd.Parameters.AddWithValue("IdCategoria", oProducto.oCategoria.IdCategoria);
-                    cmd.Parameters.AddWithValue("Precio", oProducto.Precio );
-                    cmd.Parameters.AddWithValue("Stock", oProducto.Stock );
-                    cmd.Parameters.AddWithValue("RutaImagen",oProducto.RutaImagen );
+                    cmd.Parameters.AddWithValue("Precio", oProducto.Precio);
+                    cmd.Parameters.AddWithValue("Stock", oProducto.Stock);
+                    cmd.Parameters.AddWithValue("RutaImagen", oProducto.RutaImagen);
                     cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -141,7 +139,7 @@ namespace ProyectoTest.Logica
             }
             return respuesta;
         }
-        
+
 
         public bool ActualizarRutaImagen(Producto oProducto)
         {

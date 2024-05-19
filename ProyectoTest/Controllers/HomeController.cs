@@ -1,12 +1,12 @@
-﻿using ProyectoTest.Models;
+﻿using Newtonsoft.Json;
 using ProyectoTest.Logica;
+using ProyectoTest.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Newtonsoft.Json;
-using System.IO;
 
 namespace ProyectoTest.Controllers
 {
@@ -54,7 +54,8 @@ namespace ProyectoTest.Controllers
 
 
         [HttpGet]
-        public JsonResult ListarCategoria() {
+        public JsonResult ListarCategoria()
+        {
             List<Categoria> oLista = new List<Categoria>();
             oLista = CategoriaLogica.Instancia.Listar();
             return Json(new { data = oLista }, JsonRequestBehavior.AllowGet);
@@ -153,14 +154,14 @@ namespace ProyectoTest.Controllers
                     oresponse.resultado = ProductoLogica.Instancia.Modificar(oProducto);
                 }
 
-                
+
                 if (imagenArchivo != null && oProducto.IdProducto != 0)
                 {
                     string extension = Path.GetExtension(imagenArchivo.FileName);
                     GuardarEnRuta = GuardarEnRuta + oProducto.IdProducto.ToString() + extension;
                     oProducto.RutaImagen = GuardarEnRuta;
 
-                    imagenArchivo.SaveAs(physicalPath + "/" + oProducto.IdProducto.ToString() + extension );
+                    imagenArchivo.SaveAs(physicalPath + "/" + oProducto.IdProducto.ToString() + extension);
 
                     oresponse.resultado = ProductoLogica.Instancia.ActualizarRutaImagen(oProducto);
                 }
@@ -184,7 +185,8 @@ namespace ProyectoTest.Controllers
         }
     }
 
-    public class Response {
+    public class Response
+    {
 
         public bool resultado { get; set; }
         public string mensaje { get; set; }

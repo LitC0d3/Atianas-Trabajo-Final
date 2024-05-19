@@ -6,7 +6,6 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Web;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -101,17 +100,19 @@ namespace ProyectoTest.Logica
                     {
                         while (dr.Read())
                         {
-                            lst.Add(new Carrito() {
+                            lst.Add(new Carrito()
+                            {
 
                                 IdCarrito = Convert.ToInt32(dr["IdCarrito"].ToString()),
-                                oProducto = new Producto() {
+                                oProducto = new Producto()
+                                {
                                     IdProducto = Convert.ToInt32(dr["IdProducto"].ToString()),
                                     Nombre = dr["Nombre"].ToString(),
                                     oMarca = new Marca() { Descripcion = dr["Descripcion"].ToString() },
                                     Precio = Convert.ToDecimal(dr["Precio"].ToString(), new CultureInfo("es-PE")),
                                     RutaImagen = dr["RutaImagen"].ToString()
                                 },
-                                
+
                             });
                         }
                     }
@@ -125,7 +126,8 @@ namespace ProyectoTest.Logica
             return lst;
         }
 
-        public bool Eliminar(string IdCarrito, string IdProducto) {
+        public bool Eliminar(string IdCarrito, string IdProducto)
+        {
 
             bool respuesta = true;
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
@@ -176,16 +178,18 @@ namespace ProyectoTest.Logica
                                 rptDetalleCompra = (from c in doc.Element("DATA").Elements("COMPRA")
                                                     select new Compra()
                                                     {
-                                                        Total = Convert.ToDecimal(c.Element("Total").Value,new CultureInfo("es-PE")),
+                                                        Total = Convert.ToDecimal(c.Element("Total").Value, new CultureInfo("es-PE")),
                                                         FechaTexto = c.Element("Fecha").Value,
                                                         oDetalleCompra = (from d in c.Element("DETALLE_PRODUCTO").Elements("PRODUCTO")
-                                                                          select new DetalleCompra() {
-                                                                              oProducto = new Producto() {
-                                                                                  oMarca = new Marca() { Descripcion = d.Element("Descripcion").Value  },
+                                                                          select new DetalleCompra()
+                                                                          {
+                                                                              oProducto = new Producto()
+                                                                              {
+                                                                                  oMarca = new Marca() { Descripcion = d.Element("Descripcion").Value },
                                                                                   Nombre = d.Element("Nombre").Value,
                                                                                   RutaImagen = d.Element("RutaImagen").Value
                                                                               },
-                                                                              Total = Convert.ToDecimal(d.Element("Total").Value,new CultureInfo("es-PE")),
+                                                                              Total = Convert.ToDecimal(d.Element("Total").Value, new CultureInfo("es-PE")),
                                                                               Cantidad = Convert.ToInt32(d.Element("Cantidad").Value)
                                                                           }).ToList()
                                                     }).ToList();

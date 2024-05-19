@@ -1,10 +1,8 @@
 ﻿using ProyectoTest.Logica;
 using ProyectoTest.Models;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -37,21 +35,21 @@ namespace ProyectoTest.Controllers
 
             oLista = ProductoLogica.Instancia.Listar();
             oProducto = (from o in oLista
-                      where o.IdProducto == idproducto
-                      select new Producto()
-                      {
-                          IdProducto = o.IdProducto,
-                          Nombre = o.Nombre,
-                          Descripcion = o.Descripcion,
-                          oMarca = o.oMarca,
-                          oCategoria = o.oCategoria,
-                          Precio = o.Precio,
-                          Stock = o.Stock,
-                          RutaImagen = o.RutaImagen,
-                          base64 = utilidades.convertirBase64(Server.MapPath(o.RutaImagen)),
-                          extension = Path.GetExtension(o.RutaImagen).Replace(".", ""),
-                          Activo = o.Activo
-                      }).FirstOrDefault();
+                         where o.IdProducto == idproducto
+                         select new Producto()
+                         {
+                             IdProducto = o.IdProducto,
+                             Nombre = o.Nombre,
+                             Descripcion = o.Descripcion,
+                             oMarca = o.oMarca,
+                             oCategoria = o.oCategoria,
+                             Precio = o.Precio,
+                             Stock = o.Stock,
+                             RutaImagen = o.RutaImagen,
+                             base64 = utilidades.convertirBase64(Server.MapPath(o.RutaImagen)),
+                             extension = Path.GetExtension(o.RutaImagen).Replace(".", ""),
+                             Activo = o.Activo
+                         }).FirstOrDefault();
 
             return View(oProducto);
         }
@@ -105,8 +103,9 @@ namespace ProyectoTest.Controllers
                           Activo = o.Activo
                       }).ToList();
 
-            if (idcategoria != 0){
-                oLista = oLista.Where(x => x.oCategoria.IdCategoria == idcategoria).ToList() ;
+            if (idcategoria != 0)
+            {
+                oLista = oLista.Where(x => x.oCategoria.IdCategoria == idcategoria).ToList();
             }
 
             var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
@@ -129,7 +128,7 @@ namespace ProyectoTest.Controllers
         {
             oCarrito.oUsuario = new Usuario() { IdUsuario = oUsuario.IdUsuario };
             int _respuesta = 0;
-            _respuesta = CarritoLogica.Instancia.Registrar(oCarrito) ;
+            _respuesta = CarritoLogica.Instancia.Registrar(oCarrito);
             return Json(new { respuesta = _respuesta }, JsonRequestBehavior.AllowGet);
         }
 
@@ -149,7 +148,8 @@ namespace ProyectoTest.Controllers
             List<Carrito> oLista = new List<Carrito>();
             oLista = CarritoLogica.Instancia.Obtener(oUsuario.IdUsuario);
 
-            if (oLista.Count != 0) {
+            if (oLista.Count != 0)
+            {
                 oLista = (from d in oLista
                           select new Carrito()
                           {
@@ -172,14 +172,15 @@ namespace ProyectoTest.Controllers
         }
 
         [HttpPost]
-        public JsonResult EliminarCarrito(string IdCarrito,string IdProducto)
+        public JsonResult EliminarCarrito(string IdCarrito, string IdProducto)
         {
             bool respuesta = false;
             respuesta = CarritoLogica.Instancia.Eliminar(IdCarrito, IdProducto);
             return Json(new { resultado = respuesta }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult CerrarSesion() {
+        public ActionResult CerrarSesion()
+        {
             FormsAuthentication.SignOut();
             Session["Usuario"] = null;
             return RedirectToAction("Index", "Login");
@@ -202,10 +203,10 @@ namespace ProyectoTest.Controllers
         }
 
         [HttpPost]
-        public JsonResult ObtenerDistrito(string _IdProvincia,string _IdDepartamento)
+        public JsonResult ObtenerDistrito(string _IdProvincia, string _IdDepartamento)
         {
             List<Distrito> oLista = new List<Distrito>();
-            oLista = UbigeoLogica.Instancia.ObtenerDistrito(_IdProvincia,_IdDepartamento);
+            oLista = UbigeoLogica.Instancia.ObtenerDistrito(_IdProvincia, _IdDepartamento);
             return Json(new { lista = oLista }, JsonRequestBehavior.AllowGet);
         }
 
@@ -233,9 +234,11 @@ namespace ProyectoTest.Controllers
                           Total = c.Total,
                           FechaTexto = c.FechaTexto,
                           oDetalleCompra = (from dc in c.oDetalleCompra
-                                            select new DetalleCompra() {
-                                                oProducto = new Producto() {
-                                                    oMarca = new Marca() {Descripcion = dc.oProducto.oMarca.Descripcion },
+                                            select new DetalleCompra()
+                                            {
+                                                oProducto = new Producto()
+                                                {
+                                                    oMarca = new Marca() { Descripcion = dc.oProducto.oMarca.Descripcion },
                                                     Nombre = dc.oProducto.Nombre,
                                                     RutaImagen = dc.oProducto.RutaImagen,
                                                     base64 = utilidades.convertirBase64(Server.MapPath(dc.oProducto.RutaImagen)),

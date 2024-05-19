@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace ProyectoTest
 {
@@ -32,11 +31,11 @@ namespace ProyectoTest
 
             bundles.Add(new StyleBundle("~/Content/PluginsCSS").Include(
 
-               ////FUENTE FONTAWESOME
-               //"~/Content/Plugins/fontawesome-free-5.15.2/css/all.min.css",
+                ////FUENTE FONTAWESOME
+                //"~/Content/Plugins/fontawesome-free-5.15.2/css/all.min.css",
 
-               ////SWEET ALERT
-               //"~/Content/Plugins/sweetalert2/css/sweetalert.css",
+                ////SWEET ALERT
+                //"~/Content/Plugins/sweetalert2/css/sweetalert.css",
 
                 //DATATABLE
                 "~/Content/DataTables/css/jquery.dataTables.min.css",
@@ -53,7 +52,7 @@ namespace ProyectoTest
 
                    ////SWEET ALERT
                    "~/Scripts/SweetAlert/sweetalert.min.js",
-                   
+
                    //DATATABLE JS
                    "~/Scripts/DataTables/jquery.dataTables.min.js",
                    "~/Scripts/DataTables/dataTables.responsive.min.js",

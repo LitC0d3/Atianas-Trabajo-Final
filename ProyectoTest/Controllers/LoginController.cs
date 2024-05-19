@@ -1,9 +1,5 @@
 ﻿using ProyectoTest.Logica;
 using ProyectoTest.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -28,7 +24,7 @@ namespace ProyectoTest.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(string NCorreo, string NContrasena)
         {
-            
+
             Usuario oUsuario = new Usuario();
 
             oUsuario = UsuarioLogica.Instancia.Obtener(NCorreo, NContrasena);
@@ -46,17 +42,18 @@ namespace ProyectoTest.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else {
+            else
+            {
                 return RedirectToAction("Index", "Tienda");
             }
 
-            
+
         }
 
         // GET: Login
         public ActionResult Registrarse()
         {
-            return View(new Usuario() { Nombres= "",Apellidos= "",Correo="",Contrasena="",ConfirmarContrasena="" });
+            return View(new Usuario() { Nombres = "", Apellidos = "", Correo = "", Contrasena = "", ConfirmarContrasena = "" });
         }
 
         [HttpPost]
@@ -77,8 +74,9 @@ namespace ProyectoTest.Controllers
                 ViewBag.Error = "Las contraseñas no coinciden";
                 return View(oUsuario);
             }
-            else {
-                
+            else
+            {
+
 
                 int idusuario_respuesta = UsuarioLogica.Instancia.Registrar(oUsuario);
 
@@ -88,7 +86,8 @@ namespace ProyectoTest.Controllers
                     return View();
 
                 }
-                else {
+                else
+                {
                     return RedirectToAction("Index", "Login");
                 }
             }
