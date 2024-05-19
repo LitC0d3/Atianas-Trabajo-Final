@@ -764,15 +764,15 @@ Banner Style
 }
 
 .main-banner .item-1 {
-    background-image: url(../images/banner-01.jpg);
+    background-image: url('images/banner-01.jpg');
 }
 
 .main-banner .item-2 {
-    background-image: url(../images/banner-02.jpg);
+    background-image: url('images/banner-02.jpg');
 }
 
 .main-banner .item-3 {
-    background-image: url(../images/banner-03.jpg);
+    background-image: url('images/banner-03.jpg');
 }
 
 .main-banner .item span.category {
