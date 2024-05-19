@@ -314,9 +314,9 @@
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\fontawesome.css" />
-    <Content Include="Content\images\banner-1.jpg" />
     <Content Include="Content\images\banner-2.jpg" />
     <Content Include="Content\images\banner-3.jpg" />
+    <Content Include="Content\images\banner1.jpeg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
