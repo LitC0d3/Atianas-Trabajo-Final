@@ -19,6 +19,19 @@
 - FontAwesome
 - Owl Carousel
 - Swiper.js
+- ASP.NET
+- C#
+  
+## 👥 Colaboradores
+
+Este proyecto fue desarrollado por los siguientes 6 desarrolladores:
+
+- Aldair Villegas 🚀
+- Miguel Alejo 🌟
+- Jairo Calderon 💻
+- Joseph Torres 🔧
+- Diego Reyes 🎨
+- Angel Sanchez 📝
 
 ## 🚀 Instalación y Uso
 
