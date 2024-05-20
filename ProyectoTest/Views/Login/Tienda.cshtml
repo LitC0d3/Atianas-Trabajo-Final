@@ -1,0 +1,217 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>Jewelry Store - Exclusive Collections</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="~/Content/templatemo-villa-agency.css">
+    <link rel="stylesheet" href="~/Content/owl.css">
+    <link rel="stylesheet" href="~/Content/animate.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+</head>
+
+<body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+        <div class="preloader-inner">
+            <span class="dot"></span>
+            <div class="dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+    <div class="sub-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8">
+                    <ul class="info">
+                        <li><i class="fa fa-envelope"></i> atianas@gmail.com</li>
+                        <li><i class="fa fa-map"></i> Lima - Perú</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <ul class="social-links">
+                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fab fa-tiktok"></i></a></li>
+                        <li><a href="https://www.instagram.com/atianas_02/"><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Inicio del Logo ***** -->
+                        <a href="index.html" class="logo">
+                            <h1>Atiana’S</h1>
+                        </a>
+                        <!-- ***** Fin del Logo ***** -->
+                        <!-- ***** Inicio del Menu ***** -->
+                        <ul class="nav">
+                            <li><a href="@Url.Action("Pagina","Login")">Inicio</a></li>
+                            <li><a href="property-details.html">Nosotros</a></li>
+                            <li><a href="contact.html">Contactanos</a></li>
+                            <li><a href="@Url.Action("Tienda","Login")" class="active"><i style="color: white;"class="fa fa-store"></i> Tienda Online</a></li>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Fin del Menu ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <div class="page-heading header-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <span class="breadcrumb"><a href="#">Home</a> / Tienda Online</span>
+                    <h3>Tienda Online</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section collections">
+        <div class="container">
+            <ul class="collections-filter">
+                <li>
+                    <a class="is_active" href="#!" data-filter="*">Ver Todo</a>
+                </li>
+                <li>
+                    <a href="#!" data-filter=".necklaces">Collares</a>
+                </li>
+                <li>
+                    <a href="#!" data-filter=".bracelets">Pulseras</a>
+                </li>
+            </ul>
+            <div class="row collections-box">
+                <div class="col-lg-4 col-md-6 align-self-center mb-30 collections-items necklaces">
+                    <div class="item">
+                        <a href="property-details.html"><img src="~/Content/images/1er.jpg" alt=""></a>
+                        <span class="category">Collares</span>
+                        <h6>S/. 59.99</h6>
+                        <h4><a href="property-details.html">Collar de Perlas</a></h4>
+                        <div class="main-button">
+                            <a href="property-details.html">Echarle un vistazo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 align-self-center mb-30 collections-items necklaces">
+                    <div class="item">
+                        <a href="property-details.html"><img src="~/Content/images/2do.jpg" alt=""></a>
+                        <span class="category">Collares</span>
+                        <h6>S/. 24.99</h6>
+                        <h4><a href="property-details.html">Collar de Mariposa</a></h4>
+                        <div class="main-button">
+                            <a href="property-details.html">Echarle un vistazo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 align-self-center mb-30 collections-items bracelets">
+                    <div class="item">
+                        <a href="property-details.html"><img src="~/Content/images/3er.jpg" alt=""></a>
+                        <span class="category">Pulseras</span>
+                        <h6>S/. 29.99</h6>
+                        <h4><a href="property-details.html">Pulsera de Piedra Onix</a></h4>
+                        <div class="main-button">
+                            <a href="property-details.html">Echarle un vistazo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 align-self-center mb-30 collections-items bracelets">
+                    <div class="item">
+                        <a href="property-details.html"><img src="~/Content/images/4ta.jpg" alt=""></a>
+                        <span class="category">Pulseras</span>
+                        <h6>S/. 49.99</h6>
+                        <h4><a href="property-details.html">Pulsera de Piedra Sirena con Dije de Corazon</a></h4>
+                        <div class="main-button">
+                            <a href="property-details.html">Echarle un vistazo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 align-self-center mb-30 collections-items bracelets">
+                    <div class="item">
+                        <a href="property-details.html"><img src="~/Content/images/5to.jpg" alt=""></a>
+                        <span class="category">Pulseras</span>
+                        <h6>S/. 29.99 c/u</h6>
+                        <h4><a href="property-details.html">Pulsera de Piedras Naturales</a></h4>
+                        <div class="main-button">
+                            <a href="property-details.html">Echarle un vistazo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 align-self-center mb-30 collections-items bracelets">
+                    <div class="item">
+                        <a href="property-details.html"><img src="~/Content/images/6to.jpg" alt=""></a>
+                        <span class="category">Pulseras</span>
+                        <h6>S/. 49.99</h6>
+                        <h4><a href="property-details.html">Pulseras de Piedras Natural Ying Yang</a></h4>
+                        <div class="main-button">
+                            <a href="property-details.html">Echarle un vistazo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="pagination">
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a class="is_active" href="#">>></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="col-lg-8">
+                <p>
+                    Copyright © 2024 Atiana'S. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/boostrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/isotope.min.js"></script>
+    <script src="~/Content/js/owl-carousel.js"></script>
+    <script src="~/Content/js/counter.js"></script>
+    <script src="~/Content/js/custom.js"></script>
+
+</body>
+</html>

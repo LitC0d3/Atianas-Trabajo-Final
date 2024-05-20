@@ -18,6 +18,10 @@ namespace ProyectoTest.Controllers
             return View();
         }
 
+        public ActionResult Tienda()
+        {
+            return View();
+        }
 
         [HttpPost]
         [AllowAnonymous]

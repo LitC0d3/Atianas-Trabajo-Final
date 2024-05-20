@@ -1394,7 +1394,7 @@ Page Header Style
 */
 
 .page-heading {
-    background-image: url(../images/page-heading-bg.jpg);
+    background-image: url(images/page-heading-bg.jpg);
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: cover;
