@@ -314,6 +314,12 @@
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\fontawesome.css" />
+    <Content Include="Content\images\1er.jpg" />
+    <Content Include="Content\images\2do.jpg" />
+    <Content Include="Content\images\3er.jpg" />
+    <Content Include="Content\images\4ta.jpg" />
+    <Content Include="Content\images\5to.jpg" />
+    <Content Include="Content\images\6to.jpg" />
     <Content Include="Content\images\banner-2.jpg" />
     <Content Include="Content\images\banner-3.jpg" />
     <Content Include="Content\images\banner1.jpeg" />
@@ -574,12 +580,6 @@
     <Content Include="Content\images\modelo3.jpg" />
     <Content Include="Content\images\page-heading-bg.jpg" />
     <Content Include="Content\images\phone-icon.png" />
-    <Content Include="Content\images\property-01.jpg" />
-    <Content Include="Content\images\property-02.jpg" />
-    <Content Include="Content\images\property-03.jpg" />
-    <Content Include="Content\images\property-04.jpg" />
-    <Content Include="Content\images\property-05.jpg" />
-    <Content Include="Content\images\property-06.jpg" />
     <Content Include="Content\images\Pulseradepiedras.jpg" />
     <Content Include="Content\images\single-property.jpg" />
     <Content Include="Content\images\video-bg.jpg" />
