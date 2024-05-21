@@ -5,6 +5,7 @@
     <title>Tienda</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/PluginsCSS")
+    @Scripts.Render("~/bundles/modernizr")
 
     <!-- Bootstrap core CSS -->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet">
@@ -16,6 +17,38 @@
     <link rel="stylesheet" href="~/Content/animate.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 </head>
+<style>
+    img {
+        width: 50px;
+        overflow: hidden;
+    }
+    .video {
+        background-image: url(../images/video-bg.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        padding: 0px 0px 250px 0px;
+        position: relative;
+    }
+    .radio {
+        width: 90px;
+    }
+    .header-area .main-nav .nav li {
+        padding-left: 10px;
+        padding-right: 10px;
+        height: 60px;
+        line-height: 35px;
+    }
+
+        .header-area .main-nav .nav li:last-child a {
+            padding-left: 25px;
+            padding-top: 2px;
+        }
+
+        .header-area .main-nav .nav li:last-child a {
+            color: white;
+        }
+</style>
 <body>
     <div class="sub-header">
         <div class="container">
@@ -50,30 +83,32 @@
                         <!-- ***** Inicio del Menu ***** -->
                         <ul class="nav">
                             <li><a href="@Url.Action("Pagina", "Login")">Inicio</a></li>
-                            <li><a href="property-details.html">Nosotros</a></li>
+                            <li><a href="@Url.Action("Pagina", "Tienda")">Productos</a></li>
                             <li><a href="contact.html">Contactanos</a></li>
-                            <li><a href="@Url.Action("Tienda", "Login")" class="active"><i style="color: white;" class="fa fa-store"></i> Tienda Online</a></li>
                             <li><a class="btn-ver-categoria" id="sidebarToggle" href="#!">Ver Categorias</a></li>
-</li>
-                            <!-- Botón del usuario -->
-                            
-                                @{
-                                    if (((ProyectoTest.Models.Usuario)Session["Usuario"]).EsAdministrador == false)
-                                    {
-                                        <ul class="navbar-nav">
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle btn-usuario" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                                    <li><a class="dropdown-item" href="@Url.Action("Index", "Tienda")">Ir a Tienda</a></li>
-                                                    <li><a class="dropdown-item" href="@Url.Action("Compras", "Tienda")">Mis Compras</a></li>
-                                                    <li><hr class="dropdown-divider" /></li>
-                                                    <li><a class="dropdown-item" href="@Url.Action("CerrarSesion", "Tienda")">Cerrar Sesión</a></li>
-                                                </ul>
-                                            </li>
+                            <li><a href="@Url.Action("Index", "Tienda")" class="active"><i style="color: white;" class="fa fa-store"></i> Tienda Online</a></li>
+                            @{
+                                if (((ProyectoTest.Models.Usuario)Session["Usuario"]).EsAdministrador == false)
+                                {
+                                    <li>
+                                        <form action="@Url.Action("Carrito", "Tienda")" method="post" class="d-inline-block">
+                                            <button class="btn btn-close-white" type="submit">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                <span class="badge bg-dark text-white ms-1 rounded-pill contador-carrito">0</span>
+                                            </button>
+                                        </form>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="margin-right: -70px;">
+                                            <li><a class="dropdown-item" href="@Url.Action("Index", "Tienda")">Ir a Tienda</a></li>
+                                            <li><a class="dropdown-item" href="@Url.Action("Compras", "Tienda")">Mis Compras</a></li>
+                                            <li><hr class="dropdown-divider" /></li>
+                                            <li><a class="dropdown-item" style="background-color: red;" href="@Url.Action("CerrarSesion", "Tienda")">Cerrar Sesión</a></li>
                                         </ul>
-                                    }
+                                    </li>
                                 }
-                            </li>
+                            }
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -90,11 +125,11 @@
         @RenderBody()
     </main>
     </main>
-    <div class="position-fixed top-0 end-0 p-3 mt-5" style="z-index: 5">
+    <div class="position-fixed top-0 end-0 p-3 mt-5" style="z-index: 101">
         <div id="toast-carrito" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000">
             <div class="toast-body bg-success text-white">
                 <div class="d-flex">
-                    <i class="fas fa-check fa-2x"></i> <label style="margin-left: 10px !important">Se añadió al carrito!</label>
+                    <i class="fas fa-check fa-2x"></i> <label style="margin-left: 10px !important;">Se añadió al carrito!</label>
                 </div>
             </div>
         </div>
