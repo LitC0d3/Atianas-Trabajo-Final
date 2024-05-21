@@ -4,49 +4,64 @@
     Layout = "~/Views/Shared/_Layout_Tienda.cshtml";
 }
 
-<div class="row mt-5">
-    <div class="bg-secondary py-3">
-        <div class="container my-3">
-            <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">Compra con estilo </h1>
-                <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <span class="breadcrumb"><a href="#">Home</a> / Tienda Online</span>
+                <h3>Tienda Online</h3>
             </div>
         </div>
     </div>
-
-    <div class="py-2">
-        <div class="container px-2 px-lg-2 mt-5">
-            <div id="catalogo-productos" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-
-            </div>
-        </div>
-    </div>
-
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Seleccione una Categoría</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row row-categoria">
+<div class="section collections">
+    <div class="container">
+        <ul class="collections-filter">
+            <li>
+                <a class="is_active" href="#!" data-filter="*">Ver Todo</a>
+            </li>
+            <li>
+                <a href="#!" data-filter=".necklaces">Collares</a>
+            </li>
+            <li>
+                <a href="#!" data-filter=".bracelets">Pulseras</a>
+            </li>
+        </ul>
+
+        <div class="py-2">
+            <div class="container px-2 px-lg-2 mt-5">
+                <div id="catalogo-productos" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
                 </div>
-
             </div>
-            <div class="modal-footer">
-               
+        </div>
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Seleccione una Categoría</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row row-categoria">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-@section scripts{
+    @section scripts{
 
-    <script>
+        <script>
 
         $(".btn-ver-categoria").click(function () {
             jQuery.ajax({
@@ -147,8 +162,8 @@
             });
         }
 
-    </script>
+        </script>
 
 
 
-}
+    }
