@@ -320,9 +320,9 @@
     <Content Include="Content\images\4ta.jpg" />
     <Content Include="Content\images\5to.jpg" />
     <Content Include="Content\images\6to.jpg" />
+    <Content Include="Content\images\banner-1.jpg" />
     <Content Include="Content\images\banner-2.jpg" />
     <Content Include="Content\images\banner-3.jpg" />
-    <Content Include="Content\images\banner1.jpeg" />
     <Content Include="Content\images\page-heading-bg.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

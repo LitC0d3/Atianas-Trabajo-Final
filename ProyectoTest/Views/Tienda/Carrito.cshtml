@@ -36,22 +36,23 @@
                                         <label class="radio ml-2"> <input type="radio" name="card" value="payment"> <span><img width="60" src="@Url.Content("~/Imagenes/Tarjetas/visa.png")" /></span> </label>
                                         <div>
                                             <label class="credit-card-label mb-1 mt-2">Nombre del Titular</label>
-                                            <input type="text" class="form-control credit-inputs" placeholder="Nombre" id="trj_nombre">
+                                            <input type="text" class="form-control credit-inputs" placeholder="Nombre" id="trj_nombre" oninput="validateName(this)">
                                         </div>
                                         <div>
                                             <label class="credit-card-label mb-1 mt-2">Número de tarjeta</label>
-                                            <input type="text" class="form-control credit-inputs" placeholder="0000 0000 0000 0000" id="trj_numero">
+                                            <input type="text" class="form-control credit-inputs" placeholder="0000 0000 0000 0000" id="trj_numero" oninput="formatCreditCardNumber(this)" maxlength="19">
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label class="credit-card-label mb-1 mt-2">Vigencia</label>
-                                                <input type="text" class="form-control credit-inputs" placeholder="12/24" id="trj_vigencia">
+                                                <input type="text" class="form-control credit-inputs" placeholder="12/24" id="trj_vigencia" oninput="formatExpiryDate(this)" maxlength="5">
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="credit-card-label mb-1 mt-2">CVV</label>
-                                                <input type="text" class="form-control credit-inputs" placeholder="342" id="trj_cvv">
+                                                <input type="text" class="form-control credit-inputs" placeholder="342" id="trj_cvv" oninput="validateCVV(this)" maxlength="3">
                                             </div>
                                         </div>
+                                    </div>
                                         <hr class="line">
                                         <div class="d-flex justify-content-between information"><span>Total a Pagar</span><span id="totalPagar">S/. 0</span></div>
                                         <button class="btn btn-primary btn-block mt-3" id="btnProcesarPago" type="button">Procesar Pago</button>
@@ -117,7 +118,39 @@
 
 @section scripts{
     <script>
+        //FORMATO NOMBRE
+        function validateName(input) {
+            let value = input.value;
 
+            value = value.replace(/[^\w\s]/gi, '');
+            input.value = value;
+        }
+        //FORMATO TARJETA
+        function formatCreditCardNumber(input) {
+
+            let value = input.value.replace(/\D/g, '');
+
+            value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+
+            input.value = value;
+        }
+        //FORMATO DE VIGENCIA
+        function formatExpiryDate(input) {
+
+            let value = input.value.replace(/\D/g, '');
+
+            if (value.length > 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2);
+            }
+            input.value = value;
+        }
+        //FORMATO CVV
+        function validateCVV(input) {
+            let value = input.value;
+
+            value = value.replace(/[^\d]/g, '');
+            input.value = value;
+        }
 
         $(document).ready(function () {
             jQuery.ajax({

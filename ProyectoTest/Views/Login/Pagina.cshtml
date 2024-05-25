@@ -92,31 +92,42 @@
         </div>
     </header>
     <!-- ***** Fin del Header ***** -->
-
-    <div class="main-banner">
+    <div class="main-banner" style="height: 450px; overflow: hidden;">
         <div class="owl-carousel owl-banner">
-            <div class="item item-1">
-                <div class="header-text">
-                    <span class="category">Lima, <em>Perú</em></span>
-                    <h2>¡Date prisa!<br>Obtén la Mejor Joya para ti</h2>
+            <div class="item item-1" style="background: url('@Url.Content("~/Content/images/banner-1.jpg")') no-repeat center center; background-size: cover; height: 300px;">
+                <div class="header-text" style="color: #fff; margin-top: -100px;">
+                    <span class="category" style="font-size: 1em; margin-bottom: 10px;">Lima, <em>Perú</em></span>
+                    <h2 style="font-size: 2.5em; line-height: 1.2; margin: 0; width:100%;">¡Date prisa!<br>Obtén la Mejor Joya para ti</h2>
                 </div>
             </div>
-            <div class="item item-2">
-                <div class="header-text">
-                    <span class="category">Lima, <em>Perú</em></span>
-                    <h2>¡Apresúrate!<br>Consigue la mejor joya en la ciudad</h2>
+            <div class="item item-2" style="background: url('@Url.Content("~/Content/images/banner-2.jpg")') no-repeat center center; background-size: cover; height: 300px;">
+                <div class="header-text" style="color: #fff; margin-top: -100px;">
+                    <span class="category" style="font-size: 1em; margin-bottom: 10px;">Lima, <em>Perú</em></span>
+                    <h2 style="font-size: 2.5em; line-height: 1.2; margin: 0; width:100%;">¡Apresúrate!<br>Consigue la mejor joya en la ciudad</h2>
                 </div>
             </div>
-            <div class="item item-3">
-                <div class="header-text">
-                    <span class="category">Lima, <em>Perú</em></span>
-                    <h2>¡Actúa ahora!<br>Obtén la joya más exclusiva</h2>
+            <div class="item item-3" style="background: url('@Url.Content("~/Content/images/banner-3.jpg")') no-repeat center center; background-size: cover; height: 300px;">
+                <div class="header-text" style="color: #fff; margin-top: -100px;">
+                    <span class="category" style="font-size: 1em; margin-bottom: 10px;">Lima, <em>Perú</em></span>
+                    <h2 style="font-size: 2.5em; line-height: 1.2; margin: 0; width:100%;">¡Compra ahora!<br>Obtén la joya más exclusiva</h2>
                 </div>
             </div>
         </div>
     </div>
-
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel({
+                items: 1,
+                loop: true,
+                autoplay: true,
+                autoplayTimeout: 3000,
+                nav: true,
+                dots: true
+            });
+        });
+    </script>
     <div class="featured section">
         <div class="container">
             <div class="row">
@@ -192,33 +203,6 @@
                         </ul>
                     </div>
                 </div>
-                <!--
-                <div class="video section">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-lg-4 offset-lg-4">
-                        <div class="section-heading text-center">
-                          <h6>| Video View</h6>
-                          <h2>Get Closer View & Different Feeling</h2>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="video-content">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-lg-10 offset-lg-1">
-                        <div class="video-frame">
-                          <img src="assets/images/video-frame.jpg" alt="">
-                          <a href="https://youtube.com" target="_blank"><i class="fa fa-play"></i></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>-->
-
                 <div class="fun-facts">
                     <div class="container">
                         <div class="row">
@@ -366,7 +350,7 @@
                             <div class="col-lg-4 offset-lg-4">
                                 <div class="section-heading text-center">
                                     <h6>| Catalogo</h6>
-                                       <h2>Los mejores accesorios al mejor precio</h2>
+                                    <h2>Los mejores accesorios al mejor precio</h2>
                                 </div>
                             </div>
                         </div>
@@ -378,7 +362,7 @@
                                     <h6>S/. 59.99</h6>
                                     <h4><a href="property-details.html">Collar de Perlas</a></h4>
                                     <div class="main-button">
-                                        <a href="property-details.html">Echarle un vistazo</a>
+                                        <a href="@Url.Action("Index","Tienda")">Comprar</a>
                                     </div>
                                 </div>
                             </div>
@@ -389,7 +373,7 @@
                                     <h6>S/. 24.99</h6>
                                     <h4><a href="property-details.html">Collar de Mariposa</a></h4>
                                     <div class="main-button">
-                                        <a href="property-details.html">Echarle un vistazo</a>
+                                        <a href="@Url.Action("Index","Tienda")">Comprar</a>
                                     </div>
                                 </div>
                             </div>
@@ -400,7 +384,7 @@
                                     <h6>S/. 29.99</h6>
                                     <h4><a href="property-details.html">Pulsera de Piedra Onix</a></h4>
                                     <div class="main-button">
-                                        <a href="property-details.html">Echarle un vistazo</a>
+                                        <a href="@Url.Action("Index","Tienda")">Comprar</a>
                                     </div>
                                 </div>
                             </div>
@@ -411,7 +395,7 @@
                                     <h6>S/. 49.99</h6>
                                     <h4><a href="property-details.html">Pulsera de Piedra Sirena con Dije de Corazon</a></h4>
                                     <div class="main-button">
-                                        <a href="property-details.html">Echarle un vistazo</a>
+                                        <a href="@Url.Action("Index","Tienda")">Comprar</a>
                                     </div>
                                 </div>
                             </div>
@@ -422,7 +406,7 @@
                                     <h6>S/. 29.99 c/u</h6>
                                     <h4><a href="property-details.html">Pulsera de Piedras Naturales</a></h4>
                                     <div class="main-button">
-                                        <a href="property-details.html">Echarle un vistazo</a>
+                                        <a href="@Url.Action("Index","Tienda")">Comprar</a>
                                     </div>
                                 </div>
                             </div>
@@ -433,7 +417,7 @@
                                     <h6>S/. 49.99</h6>
                                     <h4><a href="property-details.html">Pulseras de Piedras Natural Ying Yang</a></h4>
                                     <div class="main-button">
-                                        <a href="property-details.html">Echarle un vistazo</a>
+                                        <a href="@Url.Action("Index","Tienda")">Comprar</a>
                                     </div>
                                 </div>
                             </div>
