@@ -1,36 +1,5 @@
-﻿/*
+﻿@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900");
 
-TemplateMo 591 villa agency
-
-https://templatemo.com/tm-591-villa-agency
-
-*/
-
-/* ---------------------------------------------
-Table of contents
-------------------------------------------------
-01. font & reset css
-02. reset
-03. global styles
-04. header
-05. banner
-06. features
-07. testimonials
-08. contact
-09. footer
-
---------------------------------------------- */
-/* 
----------------------------------------------
-font & reset css
---------------------------------------------- 
-*/
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900");
-/* 
----------------------------------------------
-reset
---------------------------------------------- 
-*/
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, div
 pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q,
 s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
@@ -111,7 +80,7 @@ img {
 
 /* 
 ---------------------------------------------
-Global Styles
+Estilos
 --------------------------------------------- 
 */
 html,
@@ -210,7 +179,7 @@ body {
 
 /* 
 ---------------------------------------------
-Pre-loader Style
+Estilos del Pre Loader
 --------------------------------------------- 
 */
 
@@ -312,7 +281,7 @@ Pre-loader Style
 
 /* 
 ---------------------------------------------
-Header Style
+Estilos del Header
 --------------------------------------------- 
 */
 
@@ -338,7 +307,7 @@ Header Style
                 display: inline-block;
                 width: 30px;
                 height: 30px;
-                background-color: #cdcdcd;
+                background-color: #000000;
                 border-radius: 50%;
                 text-align: center;
                 line-height: 30px;
@@ -751,7 +720,7 @@ Header Style
 
 /* 
 ---------------------------------------------
-Banner Style
+Estilos del Banner
 --------------------------------------------- 
 */
 
@@ -861,7 +830,7 @@ Banner Style
 
 /* 
 ---------------------------------------------
-Featured Style
+Estilos destacado
 --------------------------------------------- 
 */
 
@@ -972,7 +941,7 @@ Featured Style
 
 /* 
 ---------------------------------------------
-Video Style
+Estilos del Video (Aun no en uso)
 --------------------------------------------- 
 */
 
@@ -1022,7 +991,7 @@ Video Style
 
 /* 
 ---------------------------------------------
-Fun Facts Style
+Estilos de datos divertidos
 --------------------------------------------- 
 */
 
@@ -1074,7 +1043,7 @@ Fun Facts Style
 
 /* 
 ---------------------------------------------
-Best Deal Style
+Estilos de Mejor Oferta
 --------------------------------------------- 
 */
 
@@ -1167,7 +1136,7 @@ Best Deal Style
 
 /* 
 ---------------------------------------------
-Properties Style
+Estilos de propiedades
 --------------------------------------------- 
 */
 
@@ -1236,7 +1205,7 @@ Properties Style
 
 /* 
 ---------------------------------------------
-Contact Style
+Estilos de Contacto
 --------------------------------------------- 
 */
 
@@ -1353,7 +1322,7 @@ Contact Style
 
 /* 
 ---------------------------------------------
-Footer Style
+Estilos del Footer
 --------------------------------------------- 
 */
 
@@ -1389,7 +1358,7 @@ footer {
 
 /* 
 ---------------------------------------------
-Page Header Style
+Estilos del Emcabezado de la Pagina
 --------------------------------------------- 
 */
 
@@ -1427,7 +1396,7 @@ Page Header Style
 
 /* 
 ---------------------------------------------
-Properties Style
+Estilos de propiedades
 --------------------------------------------- 
 */
 
@@ -1503,7 +1472,7 @@ Properties Style
 
 /* 
 ---------------------------------------------
-Single Page Style
+Estilos de página única
 --------------------------------------------- 
 */
 
@@ -1609,7 +1578,7 @@ Single Page Style
 
 /* 
 ---------------------------------------------
-Contact Page Style
+Estilos de página de contacto
 --------------------------------------------- 
 */
 
@@ -1713,7 +1682,7 @@ Contact Page Style
 
 /* 
 ---------------------------------------------
-Responsive Style
+Estilo Responsivo
 --------------------------------------------- 
 */
 
