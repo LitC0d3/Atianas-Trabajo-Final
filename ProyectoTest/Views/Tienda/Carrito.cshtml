@@ -36,7 +36,7 @@
                                         <label class="radio ml-2"> <input type="radio" name="card" value="payment"> <span><img width="60" src="@Url.Content("~/Imagenes/Tarjetas/visa.png")" /></span> </label>
                                         <div>
                                             <label class="credit-card-label mb-1 mt-2">Nombre del Titular</label>
-                                            <input type="text" class="form-control credit-inputs" placeholder="Nombre" id="trj_nombre" oninput="validateName(this)">
+                                            <input type="text" class="form-control credit-inputs" placeholder="Nombre" id="trj_nombre" oninput="validateName(this)" maxlength="50">
                                         </div>
                                         <div>
                                             <label class="credit-card-label mb-1 mt-2">Número de tarjeta</label>
@@ -96,15 +96,15 @@
                     </div>
                     <div class="mb-1">
                         <label for="message-text" class="col-form-label">Contacto:</label>
-                        <input type="text" class="form-control control-validar" autocomplete="off" id="txtContacto">
+                        <input type="text" class="form-control control-validar" autocomplete="off" id="txtContacto" maxlength="50">
                     </div>
                     <div class="mb-1">
                         <label for="message-text" class="col-form-label">Telefono:</label>
-                        <input type="text" class="form-control control-validar" autocomplete="off" id="txtTelefono">
+                        <input type="text" class="form-control control-validar" autocomplete="off" id="txtTelefono" maxlength="9">
                     </div>
                     <div class="mb-1">
                         <label for="message-text" class="col-form-label">Direccion:</label>
-                        <input type="text" class="form-control control-validar" autocomplete="off" id="txtDireccion">
+                        <input type="text" class="form-control control-validar" autocomplete="off" id="txtDireccion" maxlength="50">
                     </div>
                 </form>
             </div>
