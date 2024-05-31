@@ -157,6 +157,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\css\login.css" />
+    <Content Include="Content\css\register.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap4.css" />
@@ -324,10 +325,13 @@
     <Content Include="Content\images\banner-1.jpg" />
     <Content Include="Content\images\banner-2.jpg" />
     <Content Include="Content\images\banner-3.jpg" />
+    <Content Include="Content\images\industria-joyera.jpg" />
     <Content Include="Content\images\page-heading-bg.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagenes\login-register\image-background.png" />
+    <Content Include="Imagenes\login-register\industria-joyera.jpg" />
     <Content Include="Imagenes\Productos\1.jpeg" />
     <Content Include="Imagenes\Productos\10.jpeg" />
     <Content Include="Imagenes\Productos\2.jpeg" />

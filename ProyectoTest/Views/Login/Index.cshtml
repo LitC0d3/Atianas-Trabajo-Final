@@ -1,9 +1,7 @@
 ﻿@{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -18,7 +16,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-5">
                             <div class="login-box">
-                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                                <div class="card-header"><h3 class="font-weight-light my-4">Login - Atiana's</h3></div>
                                 <div class="card-body">
                                     <form action="@Url.Content("~/Login/Index")" method="post">
                                         @Html.AntiForgeryToken()
@@ -42,10 +40,10 @@
                                         </div>
                                         <div class="row mt-2 justify-content-center">
                                             <div class="col-sm-12 text-center">
-                                                <div class="d-flex justify-content-center mb-3">
-                                                    <a class="btn btn-primary btn-block login-box-btn" href="@Url.Action("Index","Home")">Login</a>
+                                                <div class="d-flex justify-content-center mb-3" >
+                                                    <a class="btn btn-primary btn-block login-box-btn" href="@Url.Action("Index","Home")">Iniciar Sesion</a>
                                                 </div>
-                                                <p class="mb-0">Si no tienes una cuenta <a class="login-box-btn" href="@Url.Action("Registrarse","Login")" target="_blank"><b>Register</b></a></p>
+                                                <p class="mb-0">Si no tienes una cuenta <a class="login-box-btn" href="@Url.Action("Registrarse","Login")" target="_blank"><b>Registrate</b></a></p>
                                             </div>
                                         </div>
                                     </form>

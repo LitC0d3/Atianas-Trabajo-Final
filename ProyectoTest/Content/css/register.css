@@ -61,7 +61,7 @@
 
     .login-box form a {
         display: inline-block;
-        padding: 10px 61px;
+        padding: 10px 100px;
         color: #ffffff;
         font-size: 16px;
         text-decoration: none;
@@ -99,8 +99,6 @@
     left: -100%;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #03f40f);
-    animation: btn-anim1 2s linear infinite;
 }
 
 .login-box-btn {
