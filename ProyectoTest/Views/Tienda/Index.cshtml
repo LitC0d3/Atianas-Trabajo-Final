@@ -3,7 +3,135 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout_Tienda.cshtml";
 }
+<style>
+    /* Estilos para las tarjetas de producto */
+    .card {
+        border: none;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
 
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+    .card-img-top {
+        height: 280px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover .card-img-top {
+        transform: scale(1.05);
+    }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    .card h5.fw-bolder {
+        font-size: 1.1rem;
+        color: #2d3748;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Estilos para los botones */
+    .btn-outline-dark {
+        border: 2px solid #2d3748;
+        color: #2d3748;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        transition: all 0.3s ease;
+    }
+
+        .btn-outline-dark:hover {
+            background-color: #2d3748;
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+    .btn-agregar-carrito {
+        background-color: #48bb78;
+        border-color: #48bb78;
+        color: #ffffff;
+    }
+
+        .btn-agregar-carrito:hover {
+            background-color: #38a169;
+            border-color: #38a169;
+        }
+
+    /* Estilos para el modal */
+    .modal-content {
+        border: none;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .modal-header {
+        background: #f7fafc;
+        border-bottom: 1px solid #e2e8f0;
+        padding: 1.5rem;
+    }
+
+    .modal-title {
+        color: #2d3748;
+        font-weight: 600;
+    }
+
+    .modal-body {
+        padding: 1.5rem;
+    }
+
+    .btn-categoria {
+        transition: all 0.3s ease;
+        border-radius: 6px;
+        font-weight: 500;
+    }
+
+        .btn-categoria:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+    /* Responsive adjustments */
+    @@media (max-width: 768px) {
+        .page-heading {
+            padding: 2rem 0;
+        }
+
+            .page-heading h3 {
+                font-size: 2rem;
+            }
+
+        .properties-filter {
+            gap: 0.5rem;
+        }
+
+            .properties-filter li a {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+        .card-img-top {
+            height: 220px;
+        }
+    }
+
+    /* Loading overlay personalizado */
+    .loadingoverlay {
+        background: rgba(255, 255, 255, 0.9) !important;
+    }
+
+    .loadingoverlay_element {
+        border: 3px solid #667eea;
+        border-top-color: transparent;
+        border-radius: 50%;
+    }
+</style>
 <div class="page-heading header-text">
     <div class="container">
         <div class="row">

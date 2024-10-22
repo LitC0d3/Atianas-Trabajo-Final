@@ -4,37 +4,227 @@
     Layout = "~/Views/Shared/_Layout_Tienda.cshtml";
 }
 
-<section class="py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="data:image/@Html.DisplayTextFor(model => model.extension);base64,@Html.DisplayTextFor(model => model.base64)" alt="..."></div>
+<style>
+    /* Estilos generales y variables */
+    :root {
+        --primary-color: #333;
+        --accent-color: #ff4444;
+        --success-color: #28a745;
+        --text-color: #666;
+        --light-bg: #f8f9fa;
+    }
+
+    /* Contenedor principal con efecto de tarjeta */
+    .product-section {
+        padding: 3rem 0;
+        background-color: var(--light-bg);
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+    }
+
+    .product-container {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Estilos de la imagen */
+    .product-image-container {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .product-image {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        transition: transform 0.5s ease;
+        object-fit: cover;
+    }
+
+    .product-image:hover {
+        transform: scale(1.05);
+    }
+
+    /* Información del producto */
+    .brand-name {
+        color: var(--accent-color);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    .product-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
+
+    .product-price {
+        font-size: 1.8rem;
+        color: var(--primary-color);
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .price-currency {
+        font-size: 1rem;
+        color: var(--text-color);
+    }
+
+    .product-description {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: var(--text-color);
+        margin-bottom: 2rem;
+        padding-right: 2rem;
+    }
+
+    /* Botones con mejor diseño */
+    .buttons-container {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .btn-back {
+        background-color: #fff;
+        color: var(--accent-color);
+        border: 2px solid var(--accent-color);
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        width: 180px;
+    }
+
+    .btn-back:hover {
+        background-color: var(--accent-color);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .btn-cart {
+        background-color: var(--success-color);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        border: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        font-weight: 600;
+        width: 180px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .btn-cart:hover {
+        background-color: #218838;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+    }
+
+    /* Zoom effect container */
+    .zoom-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+    }
+
+    /* Responsive design */
+    @@media (max-width: 768px) {
+        .product-container {
+            padding: 1rem;
+        }
+
+        .product-title {
+            font-size: 1.8rem;
+        }
+
+        .product-description {
+            padding-right: 0;
+        }
+
+        .buttons-container {
+            flex-direction: column;
+        }
+
+        .btn-back, .btn-cart {
+            width: 100%;
+        }
+    }
+</style>
+
+<section class="product-section">
+    <div class="product-container">
+        <div class="row gx-5 align-items-center">
             <div class="col-md-6">
-                <div class="small mb-1">@Html.DisplayTextFor(model => model.oMarca.Descripcion)</div>
-                <h1 class="display-5 fw-bolder">@Html.DisplayTextFor(model => model.Nombre)</h1>
-                <div class="fs-5 mb-5">
-                    <span>S/. @Html.DisplayTextFor(model => model.Precio)</span>
+                <div class="zoom-container mb-4">
+                    <img class="product-image"
+                         src="data:image/@Html.DisplayTextFor(model => model.extension);base64,@Html.DisplayTextFor(model => model.base64)"
+                         alt="@Html.DisplayTextFor(model => model.Nombre)">
                 </div>
-                <p class="lead">@Html.DisplayTextFor(model => model.Descripcion)</p>
-                <div class="d-flex">
-                    <a href="@Url.Action("Index", "Tienda")" class="btn btn-danger w-50 text-center me-3">
-                        <i class="fas fa-undo-alt"></i> Volver
+            </div>
+            <div class="col-md-6">
+                <div class="brand-name">@Html.DisplayTextFor(model => model.oMarca.Descripcion)</div>
+                <h1 class="product-title">@Html.DisplayTextFor(model => model.Nombre)</h1>
+                <div class="product-price">
+                    <span class="price-currency">S/.</span>
+                    <span>@Html.DisplayTextFor(model => model.Precio)</span>
+                </div>
+                <p class="product-description">@Html.DisplayTextFor(model => model.Descripcion)</p>
+                <div class="buttons-container">
+                    <a href="@Url.Action("Index", "Tienda")" class="btn-back">
+                        <i class="fas fa-arrow-left me-2"></i> Volver
                     </a>
-                    @{
-                        if (((ProyectoTest.Models.Usuario)Session["Usuario"]).EsAdministrador == false)
-                        {
-                            <button class="btn btn-success btn-agregar-carrito flex-shrink-0 w-50 " type="button" data-idproducto="@Html.DisplayTextFor(model => model.IdProducto)">
-                                <i class="fas fa-cart-plus"></i> Agregar al carrito
-                            </button>
-                        }
+                    @if (((ProyectoTest.Models.Usuario)Session["Usuario"]).EsAdministrador == false)
+                    {
+                        <button class="btn-cart btn-agregar-carrito"
+                                type="button"
+                                data-idproducto="@Html.DisplayTextFor(model => model.IdProducto)">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Agregar al carrito</span>
+                        </button>
                     }
-                    
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-@section scripts{
-    
+@section scripts {
+    <script>
+        // Efecto de zoom suave en la imagen
+        document.addEventListener('DOMContentLoaded', function() {
+            const productImage = document.querySelector('.product-image');
 
+            if (productImage) {
+                productImage.addEventListener('mousemove', function(e) {
+                    const { left, top, width, height } = this.getBoundingClientRect();
+                    const x = (e.clientX - left) / width;
+                    const y = (e.clientY - top) / height;
+
+                    this.style.transformOrigin = `${x * 100}% ${y * 100}%`;
+                });
+            }
+        });
+    </script>
 }

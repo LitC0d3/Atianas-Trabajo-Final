@@ -2,7 +2,7 @@
 {
     public class Conexion
     {
-        public static string CN = "Data Source=DESKTOP-CTRSQ6K\\SQLEXPRESS;Initial Catalog=DB_ATIANAS;Integrated Security=True";
+        public static string CN = "Data Source=ALDAIR;Initial Catalog=DB_ATIANAS;Integrated Security=True";
     }
 }
 
