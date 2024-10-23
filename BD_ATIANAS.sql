@@ -373,10 +373,10 @@ create proc sp_registrarCompra(
     @IdUsuario int,
     @TotalProducto int,
     @Total decimal(10,2),
-    @Dni varchar(8),              -- Nuevo parámetro para el DNI
-    @Nombres varchar(50),         -- Nuevo parámetro para los nombres
-    @ApellidoP varchar(50),       -- Nuevo parámetro para el apellido paterno
-    @ApellidoM varchar(50),       -- Nuevo parámetro para el apellido materno
+    @Dni varchar(8),              
+    @Nombres varchar(50),        
+    @ApellidoP varchar(50),       
+    @ApellidoM varchar(50),      
     @Telefono varchar(100),
     @Direccion varchar(100),
     @IdDistrito varchar(10),
@@ -411,6 +411,24 @@ begin
     end catch
 end
 
+
+go
+CREATE PROCEDURE sp_listarCompras
+AS
+BEGIN
+    SELECT 
+        IdCompra, 
+        Dni, 
+        Nombres, 
+        ApellidoP, 
+        ApellidoM, 
+        Telefono, 
+        Direccion, 
+        Total, 
+        FechaCompra 
+    FROM 
+        COMPRA
+END
 
 go
 
