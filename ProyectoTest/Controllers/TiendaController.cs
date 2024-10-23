@@ -5,11 +5,55 @@ using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace ProyectoTest.Controllers
 {
     public class TiendaController : Controller
     {
+        //API DE RENIEC IMPLEMENTADO
+        private readonly string _token = "apis-token-11147.4u8LYVMKh9WjUFeoqYUPyVBQg5CyyQmu";
+        private readonly string _apiUrl = "https://api.apis.net.pe/v2/reniec/dni?numero=";
+
+        public async Task<JsonResult> ObtenerDatosPorDni(string dni)
+        {
+            if (dni.Length != 8 || !dni.All(char.IsDigit))
+            {
+                return Json(new { success = false, message = "DNI inválido" }, JsonRequestBehavior.AllowGet);
+            }
+
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {_token}");
+
+                var response = await client.GetAsync($"{_apiUrl}{dni}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseData = await response.Content.ReadAsStringAsync();
+                    var datosDni = JsonConvert.DeserializeObject<dynamic>(responseData);
+
+                    var result = new
+                    {
+                        success = true,
+                        nombres = (string)datosDni.nombres,
+                        apellidoPaterno = (string)datosDni.apellidoPaterno,
+                        apellidoMaterno = (string)datosDni.apellidoMaterno
+                    };
+
+                    return Json(result, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Error en la consulta del DNI" }, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+
         private static Usuario oUsuario;
         //VISTA
         public ActionResult Index()

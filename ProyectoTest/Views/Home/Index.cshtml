@@ -39,16 +39,31 @@
         <div class="card bg-success text-white mb-4">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <div>Total Categorias</div>
+                    <div>Total de Compras</div>
                     <div id="total-categorias">34</div>
                 </div>
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="@Url.Action("Categoria","Home")">Ver Detalles</a>
+                <a class="small text-white stretched-link" href="@Url.Action("Compra","Home")">Ver Detalles</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
     </div>
+</div>
+<div class="col-4">
+    <div class="card bg-success text-white mb-4">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <div>Total Categorias</div>
+                <div id="total-categorias">34</div>
+            </div>
+        </div>
+        <div class="card-footer d-flex align-items-center justify-content-between">
+            <a class="small text-white stretched-link" href="@Url.Action("Categoria","Home")">Ver Detalles</a>
+            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+        </div>
+    </div>
+</div>
 </div>
 @section scripts{
 
@@ -61,7 +76,7 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                  
+
                     if (data.data != null) {
                         $("#total-productos").text(data.data.length);
                     }

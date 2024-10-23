@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Compras";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb mb-4 mt-4">
+    <li class="breadcrumb-item"><a href="index.html">Mantenedores</a></li>
+    <li class="breadcrumb-item active">Compras</li>
+</ol>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i> Listado de Compras
+    </div>
+    <div class="card-body">
+        <table id="tabla" class="display responsive" style="width:100%">
+            <thead>
+                <tr>
+                    <th>DNI</th>
+                    <th>Nombres</th>
+                    <th>Apellido P</th>
+                    <th>Apellido M</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Total</th>
+                    <th>Fecha de Compra</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#tabla').DataTable({
+                responsive: true,
+                "ajax": {
+                    "url": '@Url.Action("ListarCompras", "Home")',
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "Dni" },
+                    { "data": "Nombres" },
+                    { "data": "ApellidoP" },
+                    { "data": "ApellidoM" },
+                    { "data": "Telefono" },
+                    { "data": "Direccion" },
+                    { "data": "Total" },
+                    { "data": "FechaTexto" }
+                ],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json"
+                }
+            });
+        });
+    </script>
+}

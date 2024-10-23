@@ -1,4 +1,4 @@
-﻿﻿@model ProyectoTest.Models.Usuario
+﻿@model ProyectoTest.Models.Usuario
 @{
     Layout = null;
 }
@@ -10,88 +10,141 @@
     <meta name="viewport" content="width=device-width" />
     <title>Registrarse</title>
     @Styles.Render("~/Content/css")
-</head>
-<body class="bg-dark">
-    <div id="layoutAuthentication">
-        <div id="layoutAuthentication_content">
-            <main>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-7">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Crear Cuenta</h3></div>
-                                <div class="card-body">
-                                    <form action="@Url.Action("Registrarse","Login")" method="post">
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputFirstName" name="NNombres" type="text" placeholder="Nombres" value="@Html.DisplayTextFor(model => model.Nombres)" />
-                                                    <label for="inputFirstName">Nombres</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-floating">
-                                                    <input class="form-control" id="inputLastName" name="NApellidos" type="text" placeholder="Apellidos" value="@Html.DisplayTextFor(model => model.Apellidos)" />
-                                                    <label for="inputLastName">Apellidos</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputEmail" type="email" name="NCorreo" placeholder="name@example.com" value="@Html.DisplayTextFor(model => model.Correo)" />
-                                            <label for="inputEmail">Correo</label>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputPassword" name="NContrasena" type="password" placeholder="Contraseña" value="@Html.DisplayTextFor(model => model.Contrasena)" />
-                                                    <label for="inputPassword">Password</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputPasswordConfirm" name="NConfirmarContrasena" type="password" placeholder="Confirmar contraseña" value="@Html.DisplayTextFor(model => model.ConfirmarContrasena)" />
-                                                    <label for="inputPasswordConfirm">Confirmar Contraseña</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-floating">
-                                            @{if (ViewBag.Error != null)
-                                                {
-                                                    <div class="alert alert-danger" role="alert">
-                                                        @ViewBag.Error
-                                                    </div>
-                                                }
-                                            }
-                                        </div>
-                                        <div class="mt-4 mb-0">
-                                            <div class="d-grid">
-                                                <button class="btn btn-primary btn-block" type="submit">Crear Cuenta</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="card-footer text-center py-3">
+    <style>
+        body {
+            background-image: url('https://quianjoyas.es/wp-content/uploads/2023/11/imagen_portada_2-2048x975.jpg'); /* Cambia esta URL a la imagen que desees usar */
+            background-size: cover;
+            background-position: center;
+            font-family: 'Arial', sans-serif;
+        }
 
-                                </div>
+        .container {
+            max-width: 600px; /* Aumentar el ancho del contenedor */
+            background-color: rgba(255, 255, 255, 0); /* Quitar el fondo del formulario */
+            padding: 30px;
+            border-radius: 15px;
+            margin: 50px auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column; /* Centrar los elementos dentro del contenedor */
+            align-items: center; /* Centrar horizontalmente */
+        }
+
+        .card-header {
+            background-color: #FF8C00; /* Naranja para destacar */
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            font-size: 24px;
+            border-radius: 15px 15px 0 0;
+            padding: 20px;
+            width: 100%; /* Asegura que el encabezado ocupe todo el ancho */
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 1px solid #FF8C00;
+            padding: 10px;
+            margin-top: 15px;
+            background-color: white;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para resaltar los inputs */
+            width: 100%; /* Hacer que los inputs ocupen todo el ancho */
+        }
+
+        label {
+            font-weight: bold;
+            color: #FF8C00;
+        }
+
+        .btn-primary {
+            background-color: #FF8C00;
+            border: none;
+            padding: 15px;
+            font-weight: bold;
+            border-radius: 10px;
+            margin-top: 20px;
+            width: 100%;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra al botón */
+            transition: background-color 0.3s ease;
+        }
+
+            .btn-primary:hover {
+                background-color: #e07a00;
+            }
+
+        .card-footer a {
+            color: #FF8C00;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+            .card-footer a:hover {
+                text-decoration: underline;
+            }
+
+        .form-control {
+            margin-top: 10px;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card shadow-lg border-0 rounded-lg mt-5">
+            <div class="card-header">Crear Cuenta</div>
+            <div class="card-body">
+                <form action="@Url.Action("Registrarse", "Login")" method="post">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3 mb-md-0">
+                                <input class="form-control" id="inputFirstName" name="NNombres" type="text" placeholder="Nombres" value="@Html.DisplayTextFor(model => model.Nombres)" />
+                                <label for="inputFirstName">Nombres</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input class="form-control" id="inputLastName" name="NApellidos" type="text" placeholder="Apellidos" value="@Html.DisplayTextFor(model => model.Apellidos)" />
+                                <label for="inputLastName">Apellidos</label>
                             </div>
                         </div>
                     </div>
-                </div>
-            </main>
-        </div>
-        <div id="layoutAuthentication_footer">
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2021</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="inputEmail" type="email" name="NCorreo" placeholder="name@example.com" value="@Html.DisplayTextFor(model => model.Correo)" />
+                        <label for="inputEmail">Correo</label>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3 mb-md-0">
+                                <input class="form-control" id="inputPassword" name="NContrasena" type="password" placeholder="Contraseña" value="@Html.DisplayTextFor(model => model.Contrasena)" />
+                                <label for="inputPassword">Contraseña</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3 mb-md-0">
+                                <input class="form-control" id="inputPasswordConfirm" name="NConfirmarContrasena" type="password" placeholder="Confirmar contraseña" value="@Html.DisplayTextFor(model => model.ConfirmarContrasena)" />
+                                <label for="inputPasswordConfirm">Confirmar Contraseña</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </footer>
+                    <div class="form-floating">
+                        @{if (ViewBag.Error != null)
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    @ViewBag.Error
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="mt-4 mb-0">
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-block" type="submit">Crear Cuenta</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center py-3">
+                <a href="#">¿Ya tienes una cuenta? Inicia sesión</a>
+            </div>
         </div>
     </div>
     @Scripts.Render("~/bundles/jquery")

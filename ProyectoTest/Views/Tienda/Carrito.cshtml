@@ -53,21 +53,21 @@
                                             </div>
                                         </div>
                                     </div>
-                                        <hr class="line">
-                                        <div class="d-flex justify-content-between information"><span>Total a Pagar</span><span id="totalPagar">S/. 0</span></div>
-                                        <button class="btn btn-primary btn-block mt-3" id="btnProcesarPago" type="button">Procesar Pago</button>
-                                    </div>
+                                    <hr class="line">
+                                    <div class="d-flex justify-content-between information"><span>Total a Pagar</span><span id="totalPagar">S/. 0</span></div>
+                                    <button class="btn btn-primary btn-block mt-3" id="btnProcesarPago" type="button">Procesar Pago</button>
                                 </div>
                             </div>
-
                         </div>
+
                     </div>
-
                 </div>
-            </div>
 
+            </div>
         </div>
+
     </div>
+</div>
 
 </div>
 
@@ -94,10 +94,26 @@
                         <label for="recipient-name" class="col-form-label">Distrito:</label>
                         <select id="cboDistrito" class="form-select control-validar"></select>
                     </div>
+
                     <div class="mb-1">
-                        <label for="message-text" class="col-form-label">Contacto:</label>
-                        <input type="text" class="form-control control-validar" autocomplete="off" id="txtContacto" maxlength="50">
+                        <label for="dni" class="col-form-label">DNI:</label>
+                        <input type="text" class="form-control control-validar" autocomplete="off" id="txtDni" maxlength="8">
+                        <button type="button" class="btn btn-primary mt-2" id="btnValidarDni">Validar DNI</button>
                     </div>
+
+                    <div class="mb-1">
+                        <label for="nombres" class="col-form-label">Nombres:</label>
+                        <input type="text" class="form-control control-validar" autocomplete="off" id="txtNombres" readonly>
+                    </div>
+                    <div class="mb-1">
+                        <label for="apellidoPaterno" class="col-form-label">Apellido Paterno:</label>
+                        <input type="text" class="form-control control-validar" autocomplete="off" id="txtApellidoPaterno" readonly>
+                    </div>
+                    <div class="mb-1">
+                        <label for="apellidoMaterno" class="col-form-label">Apellido Materno:</label>
+                        <input type="text" class="form-control control-validar" autocomplete="off" id="txtApellidoMaterno" readonly>
+                    </div>
+
                     <div class="mb-1">
                         <label for="message-text" class="col-form-label">Telefono:</label>
                         <input type="text" class="form-control control-validar" autocomplete="off" id="txtTelefono" maxlength="9">
@@ -116,8 +132,34 @@
     </div>
 </div>
 
+
 @section scripts{
     <script>
+        //FORMATO API RENIEC
+        document.getElementById('btnValidarDni').addEventListener('click', function () {
+            var dni = document.getElementById('txtDni').value;
+
+            if (dni.length === 8 && !isNaN(dni)) {
+                fetch(`/Tienda/ObtenerDatosPorDni?dni=${dni}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.getElementById('txtNombres').value = data.nombres;
+                            document.getElementById('txtApellidoPaterno').value = data.apellidoPaterno;
+                            document.getElementById('txtApellidoMaterno').value = data.apellidoMaterno;
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error al consultar el DNI:', error);
+                        alert('No se pudo validar el DNI.');
+                    });
+            } else {
+                alert('El DNI debe tener 8 dígitos numéricos.');
+            }
+        });
+
         //FORMATO NOMBRE
         function validateName(input) {
             let value = input.value;
@@ -151,7 +193,7 @@
             value = value.replace(/[^\d]/g, '');
             input.value = value;
         }
-
+        //DATOS DEL CARRITO
         $(document).ready(function () {
             jQuery.ajax({
                 url: '@Url.Action("ObtenerCarrito", "Tienda")',
@@ -282,7 +324,10 @@
             $("#cboDepartamento").val($("#cboDepartamento option:first").val());
             $("#cboProvincia").val($("#cboProvincia option:first").val());
             $("#cboDistrito").val($("#cboDistrito option:first").val());
-            $("#txtContacto").val("");
+            $("#txtDni").val("");
+            $("#txtNombres").val("");
+            $("#txtApellidoP").val("");
+            $("#txtApellidoM").val("");
             $("#txtTelefono").val("");
             $("#txtDireccion").val("");
             $(".control-validar").removeClass("border border-danger");
@@ -391,77 +436,134 @@
             });
         }
 
+    $(document).ready(function () {
         $("#btnConfirmarCompra").on("click", function (e) {
-  
-            var falta_ingresar_datos = false;
+            e.preventDefault();
 
-            $(".control-validar").removeClass("border border-danger");
+            if (!validarFormulario()) {
+                return false;
+            }
 
-            $(".control-validar").each(function (i) {
-                if ($(this).is('input')) {
-                    if ($(this).val() == "") {
-                        $(this).addClass("border border-danger")
-                        falta_ingresar_datos = true;
-                    }
-                } else if ($(this).is('select')) {
-                    if ($(this).children("option:selected").val() == "00") {
-                        $(this).addClass("border border-danger")
-                        falta_ingresar_datos = true;
-                    }
-                }
-            });
+            var detalle = [];
+            var total = 0;
 
-            if (!falta_ingresar_datos) {
-
-                var detalle = [];
-                var total = 0;
+            try {
                 $("input.input-cantidad").each(function (index) {
-                    var precio = parseFloat($(this).val()) * parseFloat($(this).data("precio"));
+                    var cantidad = parseInt($(this).val()) || 0;
+                    var precio = parseFloat($(this).data("precio")) || 0;
+                    var subtotal = cantidad * precio;
+
+                    if (cantidad <= 0) {
+                        throw "La cantidad debe ser mayor a 0";
+                    }
+
                     detalle.push({
                         IdProducto: parseInt($(this).data("idproducto")),
-                        Cantidad: parseInt($(this).val()),
-                        Total: precio
+                        Cantidad: cantidad,
+                        Total: subtotal
                     });
 
-                    total = total + precio;
+                    total += subtotal;
                 });
 
-                var request = {
+                if (detalle.length === 0) {
+                    swal("Error", "No hay productos en el carrito", "warning");
+                    return false;
+                }
+
+                var compraData = {
                     oCompra: {
                         TotalProducto: $("#productos-seleccionados > div.card").length,
                         Total: total,
-                        Contacto: $("#txtContacto").val(),
-                        Telefono: $("#txtTelefono").val(),
-                        Direccion: $("#txtDireccion").val(),
+                        Dni: $("#txtDni").val().trim(),
+                        Nombres: $("#txtNombres").val().trim(),
+                        ApellidoP: $("#txtApellidoPaterno").val().trim(),
+                        ApellidoM: $("#txtApellidoMaterno").val().trim(),
+                        Telefono: $("#txtTelefono").val().trim(),
+                        Direccion: $("#txtDireccion").val().trim(),
                         IdDistrito: $("#cboDistrito").val(),
                         oDetalleCompra: detalle
                     }
+                };
 
-                }
-                
-                jQuery.ajax({
+                $("#btnConfirmarCompra").prop('disabled', true);
+
+                $.ajax({
                     url: '@Url.Action("RegistrarCompra", "Tienda")',
                     type: "POST",
-                    data: JSON.stringify(request),
+                    data: JSON.stringify(compraData),
                     dataType: "json",
                     contentType: "application/json; charset=utf-8",
-                    success: function (data) {
-                        if (data.resultado) {
-                            swal("Compra Realizada", "Pronto te informaremos la entrega de tu pedido", "success").then((value) => {
-                                 window.location.href = "@Url.Action("Index", "Tienda")"
+                    success: function (response) {
+                        if (response.resultado) {
+                            swal({
+                                title: "¡Compra Realizada!",
+                                text: "Pronto te informaremos la entrega de tu pedido",
+                                icon: "success",
+                                buttons: {
+                                    confirm: {
+                                        text: "Aceptar",
+                                        value: true,
+                                        visible: true,
+                                        className: "btn btn-primary",
+                                        closeModal: true
+                                    }
+                                }
+                            }).then((value) => {
+                                window.location.href = "@Url.Action("Index", "Tienda")";
                             });
                         } else {
-                            swal("Lo sentimos", "No se  pudo completar la compra", "warning");
+                            swal("Error", response.mensaje || "No se pudo completar la compra", "warning");
                         }
                     },
-                    error: function (error) {
-                        console.log(error)
+                    error: function (xhr, status, error) {
+                        console.error("Error en la solicitud:", error);
+                        console.error("Detalles:", xhr.responseText);
+                        swal("Error", "Ocurrió un error al procesar la compra. Por favor, intente nuevamente.", "error");
                     },
-                    beforeSend: function () {
-                    },
+                    complete: function () {
+                        $("#btnConfirmarCompra").prop('disabled', false);
+                    }
                 });
+            } catch (error) {
+                swal("Error", error, "warning");
             }
-        })
+        });
+    });
+
+function validarFormulario() {
+    var camposRequeridos = [
+        { selector: "#txtDni", mensaje: "Ingrese el DNI" },
+        { selector: "#txtNombres", mensaje: "Ingrese los nombres" },
+        { selector: "#txtApellidoPaterno", mensaje: "Ingrese el apellido paterno" },
+        { selector: "#txtApellidoMaterno", mensaje: "Ingrese el apellido materno" },
+        { selector: "#txtTelefono", mensaje: "Ingrese el teléfono" },
+        { selector: "#txtDireccion", mensaje: "Ingrese la dirección" },
+        { selector: "#cboDistrito", mensaje: "Seleccione el distrito" }
+    ];
+
+    $(".control-validar").removeClass("border border-danger");
+
+    for (let campo of camposRequeridos) {
+        const elemento = $(campo.selector);
+        const valor = elemento.val();
+
+        if (!valor || valor.trim() === "" || valor === "00") {
+            elemento.addClass("border border-danger");
+            swal("Error", campo.mensaje, "warning");
+            return false;
+        }
+    }
+
+    const dni = $("#txtDni").val().trim();
+    if (dni.length !== 8 || !/^\d+$/.test(dni)) {
+        $("#txtDni").addClass("border border-danger");
+        swal("Error", "El DNI debe tener 8 dígitos numéricos", "warning");
+        return false;
+    }
+
+    return true;
+}
 
 
     </script>

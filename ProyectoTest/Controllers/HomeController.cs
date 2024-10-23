@@ -43,7 +43,13 @@ namespace ProyectoTest.Controllers
 
             return View();
         }
+        public ActionResult Compra()
+        {
+            if (Session["Usuario"] == null)
+                return RedirectToAction("Index", "Login");
 
+            return View();
+        }
         public ActionResult Tienda()
         {
             if (Session["Usuario"] == null)
@@ -125,6 +131,7 @@ namespace ProyectoTest.Controllers
             return Json(new { data = oLista }, JsonRequestBehavior.AllowGet);
         }
 
+
         [HttpPost]
         public JsonResult GuardarProducto(string objeto, HttpPostedFileBase imagenArchivo)
         {
@@ -183,6 +190,14 @@ namespace ProyectoTest.Controllers
             respuesta = ProductoLogica.Instancia.Eliminar(id);
             return Json(new { resultado = respuesta }, JsonRequestBehavior.AllowGet);
         }
+        [HttpGet]
+        public JsonResult ListarCompras()
+        {
+            List<Compra> oLista = CompraLogica.Instancia.ListarCompras();
+            return Json(new { data = oLista }, JsonRequestBehavior.AllowGet);
+        }
+
+
     }
 
     public class Response

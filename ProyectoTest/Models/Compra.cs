@@ -8,7 +8,10 @@ namespace ProyectoTest.Models
         public int IdUsuario { get; set; }
         public string TotalProducto { get; set; }
         public decimal Total { get; set; }
-        public string Contacto { get; set; }
+        public string Dni { get; set; }
+        public string Nombres { get; set; }
+        public string ApellidoP { get; set; }
+        public string ApellidoM { get; set; }
         public string Telefono { get; set; }
         public string Direccion { get; set; }
         public string IdDistrito { get; set; }

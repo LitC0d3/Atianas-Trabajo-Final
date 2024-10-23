@@ -1,5 +1,6 @@
 ﻿using ProyectoTest.Models;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
@@ -46,7 +47,10 @@ namespace ProyectoTest.Logica
                     cmd.Parameters.AddWithValue("IdUsuario", oCompra.IdUsuario);
                     cmd.Parameters.AddWithValue("TotalProducto", oCompra.TotalProducto);
                     cmd.Parameters.AddWithValue("Total", oCompra.Total);
-                    cmd.Parameters.AddWithValue("Contacto", oCompra.Contacto);
+                    cmd.Parameters.AddWithValue("Dni", oCompra.Dni);
+                    cmd.Parameters.AddWithValue("Nombres", oCompra.Nombres);
+                    cmd.Parameters.AddWithValue("ApellidoP", oCompra.ApellidoP);
+                    cmd.Parameters.AddWithValue("ApellidoM", oCompra.ApellidoM);
                     cmd.Parameters.AddWithValue("Telefono", oCompra.Telefono);
                     cmd.Parameters.AddWithValue("Direccion", oCompra.Direccion);
                     cmd.Parameters.AddWithValue("IdDistrito", oCompra.IdDistrito);
@@ -66,8 +70,41 @@ namespace ProyectoTest.Logica
             }
             return respuesta;
         }
-
-
+        public List<Compra> ListarCompras()
+        {
+            List<Compra> lista = new List<Compra>();
+            using (SqlConnection conn = new SqlConnection(Conexion.CN))
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_listarCompras", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Compra compra = new Compra()
+                            {
+                                IdCompra = reader.GetInt32(reader.GetOrdinal("IdCompra")),
+                                Dni = reader.GetString(reader.GetOrdinal("Dni")),
+                                Nombres = reader.GetString(reader.GetOrdinal("Nombres")),
+                                ApellidoP = reader.GetString(reader.GetOrdinal("ApellidoP")),
+                                ApellidoM = reader.GetString(reader.GetOrdinal("ApellidoM")),
+                                Telefono = reader.GetString(reader.GetOrdinal("Telefono")),
+                                Direccion = reader.GetString(reader.GetOrdinal("Direccion")),
+                                Total = reader.GetDecimal(reader.GetOrdinal("Total")),
+                                // Asignar FechaTexto desde FechaCompra
+                                FechaTexto = reader.IsDBNull(reader.GetOrdinal("FechaCompra"))
+                                    ? null
+                                    : reader.GetDateTime(reader.GetOrdinal("FechaCompra")).ToString("dd/MM/yyyy")
+                            };
+                            lista.Add(compra);
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
 
     }
 }

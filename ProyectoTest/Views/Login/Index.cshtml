@@ -3,196 +3,164 @@
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
+    <title>Login - Tienda de Joyas</title>
     @Styles.Render("~/Content/css")
     <style>
+        body {
+            background-image: url('https://quianjoyas.es/wp-content/uploads/2023/11/imagen_portada_2-2048x975.jpg'); /* Puedes reemplazar la URL con la imagen que prefieras */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh; /* Altura del 100% de la pantalla */
+            margin: 0;
+            display: flex;
+            justify-content: center; /* Centra horizontalmente */
+            align-items: center; /* Centra verticalmente */
+        }
+
         .container {
-            max-width: 350px;
-            background: #F8F9FD;
-            background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
-            border-radius: 40px;
-            padding: 25px 35px;
-            border: 5px solid rgb(255, 255, 255);
-            box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
-            margin: 20px auto;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.9); /* Fondo blanco translúcido */
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .heading {
             text-align: center;
-            font-weight: 900;
-            font-size: 30px;
-            color: rgb(16, 137, 211);
+            font-weight: bold;
+            font-size: 32px;
+            color: #e67e22; /* Naranja elegante */
         }
 
         .form {
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
             .form .input {
                 width: 100%;
-                background: white;
-                border: none;
-                padding: 15px 20px;
+                background: #fff;
+                border: 1px solid #ccc;
+                padding: 12px 18px;
                 border-radius: 20px;
                 margin-top: 15px;
-                box-shadow: #cff0ff 0px 10px 10px -5px;
-                border-inline: 2px solid transparent;
+                font-size: 14px;
+                color: #333;
             }
-
-                .form .input::-moz-placeholder {
-                    color: rgb(170, 170, 170);
-                }
-
-                .form .input::placeholder {
-                    color: rgb(170, 170, 170);
-                }
 
                 .form .input:focus {
                     outline: none;
-                    border-inline: 2px solid #12B1D1;
-                }
-
-            .form .forgot-password {
-                display: block;
-                margin-top: 10px;
-                margin-left: 10px;
-            }
-
-                .form .forgot-password a {
-                    font-size: 11px;
-                    color: #0099ff;
-                    text-decoration: none;
+                    border-color: #e67e22; /* Borde naranja al hacer focus */
                 }
 
             .form .login-button {
                 display: block;
                 width: 100%;
-                font-weight: bold;
-                background: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
+                background: #e67e22; /* Fondo naranja */
                 color: white;
-                padding-block: 15px;
-                margin: 20px auto;
-                border-radius: 20px;
-                box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px;
+                padding: 12px;
+                font-size: 16px;
+                font-weight: bold;
+                border-radius: 30px;
                 border: none;
-                transition: all 0.2s ease-in-out;
+                margin-top: 25px;
+                cursor: pointer;
+                transition: background 0.3s ease;
             }
 
                 .form .login-button:hover {
-                    transform: scale(1.03);
-                    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 23px 10px -20px;
+                    background: #d35400; /* Naranja más oscuro al pasar el ratón */
                 }
 
-                .form .login-button:active {
-                    transform: scale(0.95);
-                    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px;
-                }
-
-        .social-account-container {
-            margin-top: 25px;
+        .forgot-password {
+            text-align: right;
+            margin-top: 10px;
         }
 
-            .social-account-container .title {
-                display: block;
-                text-align: center;
-                font-size: 10px;
-                color: rgb(170, 170, 170);
+            .forgot-password a {
+                font-size: 12px;
+                color: #e67e22;
+                text-decoration: none;
             }
-
-            .social-account-container .social-accounts {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                gap: 15px;
-                margin-top: 5px;
-            }
-
-                .social-account-container .social-accounts .social-button {
-                    background: linear-gradient(45deg, rgb(0, 0, 0) 0%, rgb(112, 112, 112) 100%);
-                    border: 5px solid white;
-                    padding: 5px;
-                    border-radius: 50%;
-                    width: 40px;
-                    aspect-ratio: 1;
-                    display: grid;
-                    place-content: center;
-                    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 12px 10px -8px;
-                    transition: all 0.2s ease-in-out;
-                }
-
-                    .social-account-container .social-accounts .social-button .svg {
-                        fill: white;
-                        margin: auto;
-                    }
-
-                    .social-account-container .social-accounts .social-button:hover {
-                        transform: scale(1.2);
-                    }
-
-                    .social-account-container .social-accounts .social-button:active {
-                        transform: scale(0.9);
-                    }
 
         .agreement {
-            display: block;
             text-align: center;
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
             .agreement a {
+                font-size: 12px;
+                color: #e67e22;
                 text-decoration: none;
-                color: #0099ff;
-                font-size: 9px;
             }
+
+        .social-accounts {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+            .social-accounts .social-button {
+                background: white;
+                border: 2px solid #e67e22;
+                padding: 10px;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+                .social-accounts .social-button:hover {
+                    background: #e67e22;
+                    color: white;
+                    transition: 0.3s ease;
+                }
     </style>
 </head>
-<body class="bg-dark">
-    <div id="layoutAuthentication">
-        <div id="layoutAuthentication_content">
-            <main>
-                <div class="container">
-                    <div class="heading">Login</div>
-                    <div class="form">
-                        <form action="@Url.Content("~/Login/Index")" method="post">
-                            @Html.AntiForgeryToken()
-                            <div>
-                                <input class="form-control input" id="inputEmail" name="NCorreo" type="email" placeholder="name@example.com" value="admin@example.com" />
-                            </div>
-                            <div>
-                                <input class="form-control input" id="inputPassword" name="NContrasena" type="password" placeholder="Contraseña" autocomplete="off" value="admin123" />
-                            </div>
-                            <div class="forgot-password">
-                                <a href="#">Forgot Password?</a>
-                            </div>
-                            <button class="login-button" type="submit">Ingresar</button>
-                        </form>
-                        
-                        <div class="agreement">
-                            <a href="@Url.Action("Registrarse", "Login")">Necesitas una cuenta? Registrate!</a>
-                        </div>
-                    </div>
+<body>
+    <div class="container">
+        <div class="heading">Iniciar Sesión</div>
+        <div class="form">
+            <form action="@Url.Content("~/Login/Index")" method="post">
+                @Html.AntiForgeryToken()
+                <div>
+                    <input class="form-control input" id="inputEmail" name="NCorreo" type="email" placeholder="Correo electrónico" />
                 </div>
-            </main>
+                <div>
+                    <input class="form-control input" id="inputPassword" name="NContrasena" type="password" placeholder="Contraseña" autocomplete="off" />
+                </div>
+                <div class="forgot-password">
+                    <a href="#">¿Olvidaste tu contraseña?</a>
+                </div>
+                <button class="login-button" type="submit">Ingresar</button>
+            </form>
+            <div class="agreement">
+                <a href="@Url.Action("Registrarse", "Login")">¿No tienes cuenta? Regístrate</a>
+            </div>
         </div>
-        <div id="layoutAuthentication_footer">
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2021</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+
+        <div class="social-accounts">
+            <div class="social-button">
+                <!-- Agrega íconos sociales aquí -->
+                <i class="fa fa-facebook"></i>
+            </div>
+            <div class="social-button">
+                <i class="fa fa-google"></i>
+            </div>
+            <div class="social-button">
+                <i class="fa fa-twitter"></i>
+            </div>
         </div>
     </div>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 </body>
