@@ -73,13 +73,15 @@ IdProducto int references PRODUCTO(IdProducto)
 go
 
 
-
 create table COMPRA(
 IdCompra int primary key identity,
 IdUsuario int references USUARIO(IdUsuario),
 TotalProducto int,
 Total decimal(10,2),
-Contacto varchar(50),
+Dni varchar(8),
+Nombres varchar(50),
+ApellidoP varchar(50),
+ApellidoM varchar(50),
 Telefono varchar(50),
 Direccion varchar(500),
 IdDistrito varchar(10),
@@ -367,45 +369,66 @@ end
 
 go
 
-
 create proc sp_registrarCompra(
-@IdUsuario int,
-@TotalProducto int,
-@Total decimal(10,2),
-@Contacto varchar(100),
-@Telefono varchar(100),
-@Direccion varchar(100),
-@IdDistrito varchar(10),
-@QueryDetalleCompra nvarchar(max),
-@Resultado bit output
+    @IdUsuario int,
+    @TotalProducto int,
+    @Total decimal(10,2),
+    @Dni varchar(8),              
+    @Nombres varchar(50),        
+    @ApellidoP varchar(50),       
+    @ApellidoM varchar(50),      
+    @Telefono varchar(100),
+    @Direccion varchar(100),
+    @IdDistrito varchar(10),
+    @QueryDetalleCompra nvarchar(max),
+    @Resultado bit output
 )
 as
 begin
-	begin try
-		SET @Resultado = 0
-		begin transaction
-		
-		declare @idcompra int = 0
-		insert into COMPRA(IdUsuario,TotalProducto,Total,Contacto,Telefono,Direccion,IdDistrito) values
-		(@IdUsuario,@TotalProducto,@Total,@Contacto,@Telefono,@Direccion,@IdDistrito)
+    begin try
+        SET @Resultado = 0
+        begin transaction
+        
+        declare @idcompra int = 0
+        insert into COMPRA(IdUsuario, TotalProducto, Total, Dni, Nombres, ApellidoP, ApellidoM, Telefono, Direccion, IdDistrito) values
+        (@IdUsuario, @TotalProducto, @Total, @Dni, @Nombres, @ApellidoP, @ApellidoM, @Telefono, @Direccion, @IdDistrito)
 
-		set @idcompra = scope_identity()
+        set @idcompra = scope_identity()
 
-		set @QueryDetalleCompra = replace(@QueryDetalleCompra,'¡idcompra!',@idcompra)
+        set @QueryDetalleCompra = replace(@QueryDetalleCompra, '¡idcompra!', @idcompra)
 
-		EXECUTE sp_executesql @QueryDetalleCompra
+        EXECUTE sp_executesql @QueryDetalleCompra
 
-		delete from CARRITO where IdUsuario = @IdUsuario
+        delete from CARRITO where IdUsuario = @IdUsuario
 
-		SET @Resultado = 1
+        SET @Resultado = 1
 
-		commit
-	end try
-	begin catch
-		rollback
-		SET @Resultado = 0
-	end catch
+        commit
+    end try
+    begin catch
+        rollback
+        SET @Resultado = 0
+    end catch
 end
+
+
+go
+CREATE PROCEDURE sp_listarCompras
+AS
+BEGIN
+    SELECT 
+        IdCompra, 
+        Dni, 
+        Nombres, 
+        ApellidoP, 
+        ApellidoM, 
+        Telefono, 
+        Direccion, 
+        Total, 
+        FechaCompra 
+    FROM 
+        COMPRA
+END
 
 go
 
